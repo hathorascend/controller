@@ -6,6 +6,9 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 import pandas as pd
 import plotly.express as px
+import export_manager
+import import_manager
+import pdf_generator
 
 # Configuración de la página
 st.set_page_config(
@@ -203,3 +206,28 @@ elif menu == "Análisis":
     st.success("✅ Aplicación funcionando correctamente")
     st.info("💡 Próximas mejoras: Exportación a PDF, Gráficos avanzados, Integración con APIs bancarias")
     # Version 1.0 - Production release with data visualization
+
+# ============================================================================
+# DATA MANAGEMENT - Exportar/Importar datos (Local-First)
+# ============================================================================
+with st.sidebar:
+    st.divider()
+    st.markdown("### 💾 Gestión de Datos")
+    
+    # Export button
+    st.markdown("**Descargar tus datos:**")
+    json_data = export_manager.export_to_json({"transactions": st.session_state.transactions})
+    export_manager.create_download_button(json_data, export_manager.generate_export_filename())
+    
+    # Import section
+    st.markdown("**Cargar tus datos:**")
+    import_manager.create_upload_widget()
+
+# ============================================================================
+# PDF REPORT - En la sección de Reportes
+# ============================================================================
+if menu == "Reportes":
+    st.divider()
+    col1, col2 = st.columns([2, 1])
+    with col2:
+        pdf_generator.create_pdf_download_button(st.session_state.transactions)
