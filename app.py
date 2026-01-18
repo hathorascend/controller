@@ -202,3 +202,4 @@ elif menu == "Análisis":
     st.divider()
     st.success("✅ Aplicación funcionando correctamente")
     st.info("💡 Próximas mejoras: Exportación a PDF, Gráficos avanzados, Integración con APIs bancarias")
+    # Version 1.0 - Production release with data visualization
