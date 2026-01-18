@@ -6,7 +6,6 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 
 # Configuración de la página
 st.set_page_config(
